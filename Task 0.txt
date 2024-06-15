@@ -1,0 +1,1 @@
+ select h.hacker_id, h.name, sum(a.maxscore) from hackers h inner join (select s.hacker_id, s.challenge_id, max(s.score) as maxscore from submissions s group by s.hacker_id, s.challenge_id) as a on h.hacker_id = a.hacker_id group by h.hacker_id, h.name having sum(a.maxscore)> 0 order by sum(a.maxscore) desc , h.hacker_id
